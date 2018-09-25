@@ -36,11 +36,11 @@ button.addEventListener("click", () => {
 
 ### `canvasScreenshot(canvas, options)`
 
-| Option               | Type              | Default                                 | Description             |
-| -------------------- | ----------------- | --------------------------------------- | ----------------------- |
-| **canvas**           | HTMLCanvasElement |                                         | The canvas element      |
-| **options.filename** | string?           | `Screenshot ${Date().toLocaleString()}` | File name               |
-| **options.quality**  | number?           | 1                                       | Quality between 0 and 1 |
+| Option               | Type              | Default                                  | Description             |
+| -------------------- | ----------------- | ---------------------------------------- | ----------------------- |
+| **canvas**           | HTMLCanvasElement |                                          | The canvas element      |
+| **options.filename** | string?           | `Screen Shot YYYY-MM-DD at HH.MM.SS.png` | File name               |
+| **options.quality**  | number?           | 1                                        | Quality between 0 and 1 |
 
 Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
 
