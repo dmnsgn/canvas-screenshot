@@ -1,0 +1,32 @@
+{
+  "name": "canvas-screenshot",
+  "version": "1.0.0",
+  "description": "A one trick pony package to download an image from a canvas.",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo demo.js --open --live"
+  },
+  "author": "Damien Seguin (https://dmnsgn.me)",
+  "license": "MIT",
+  "devDependencies": {
+    "budo": "^11.3.2",
+    "get-canvas-context": "^1.0.2"
+  },
+  "dependencies": {
+    "file-extension": "^4.0.5"
+  },
+  "keywords": [
+    "canvas",
+    "image",
+    "download",
+    "downloader"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dmnsgn/canvas-screenshot.git"
+  },
+  "homepage": "https://github.com/dmnsgn/canvas-screenshot",
+  "bugs": {
+    "url": "https://github.com/dmnsgn/canvas-screenshot/issues"
+  }
+}
