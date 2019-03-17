@@ -19,9 +19,9 @@ npm install canvas-screenshot
 
 ```js
 const canvasScreenshot = require("canvas-screenshot");
-const getCanvasContext = require("get-canvas-context");
+const createCanvasContext = require("canvas-context");
 
-const context = getCanvasContext("2d", {
+const { context } = createCanvasContext("2d", {
   width: 100,
   height: 100
 });
