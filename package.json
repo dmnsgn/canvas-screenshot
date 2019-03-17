@@ -10,7 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "budo": "^11.3.2",
-    "get-canvas-context": "^1.0.2"
+    "canvas-context": "^1.0.1"
   },
   "dependencies": {
     "file-extension": "^4.0.5"

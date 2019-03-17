@@ -1,9 +1,9 @@
 const canvasScreenshot = require("./");
-const getCanvasContext = require("get-canvas-context");
+const createCanvasContext = require("canvas-context");
 
 const width = 100;
 const height = 100;
-const context = getCanvasContext("2d", {
+const { context } = createCanvasContext("2d", {
   width,
   height
 });
