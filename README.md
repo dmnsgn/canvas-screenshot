@@ -34,13 +34,18 @@ button.addEventListener("click", () => {
 
 ## API
 
-### `canvasScreenshot(canvas, options)`
+### `canvasScreenshot(canvas, options): DOMString | Promise<Blob>`
 
-| Option               | Type              | Default                                  | Description             |
-| -------------------- | ----------------- | ---------------------------------------- | ----------------------- |
-| **canvas**           | HTMLCanvasElement |                                          | The canvas element      |
-| **options.filename** | string?           | `Screen Shot YYYY-MM-DD at HH.MM.SS.png` | File name               |
-| **options.quality**  | number?           | 1                                        | Quality between 0 and 1 |
+Returns a `Data URI` or a Promise resolving with a Blob.
+Setting `useBlob` to `true` will consequently make the module async and return the latter.
+
+| Option               | Type              | Default                                  | Description                           |
+| -------------------- | ----------------- | ---------------------------------------- | ------------------------------------- |
+| **canvas**           | HTMLCanvasElement |                                          | The canvas element                    |
+| **options.filename** | string?           | `Screen Shot YYYY-MM-DD at HH.MM.SS.png` | File name                             |
+| **options.quality**  | number?           | 1                                        | Quality between 0 and 1               |
+| **options.useBlob**  | boolean?          | undefined                                | Use `canvas.toBlob`                   |
+| **options.download** | boolean?          | true                                     | Automatically download the screenshot |
 
 Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
 
