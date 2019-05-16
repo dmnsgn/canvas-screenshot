@@ -9,8 +9,8 @@
   "author": "Damien Seguin (https://dmnsgn.me)",
   "license": "MIT",
   "devDependencies": {
-    "budo": "^11.6.1",
-    "canvas-context": "^1.0.1"
+    "budo": "^11.6.2",
+    "canvas-context": "^1.0.3"
   },
   "dependencies": {
     "file-extension": "^4.0.5"
