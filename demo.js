@@ -23,8 +23,21 @@ button.style.marginTop = "10px";
 button.innerText = "Takes screenshots";
 document.body.appendChild(button);
 
-button.addEventListener("click", () => {
+button.addEventListener("click", async () => {
   canvasScreenshot(context.canvas);
+  await canvasScreenshot(context.canvas, {
+    filename: "test-blob",
+    useBlob: true
+  })
+  const dataURL = canvasScreenshot(context.canvas, {
+    download: false
+  });
+  const blob = await canvasScreenshot(context.canvas, {
+    filename: "test-blob",
+    useBlob: true,
+    download: false
+  })
+  console.log(dataURL, blob);
 
   setTimeout(
     () => canvasScreenshot(context.canvas, { filename: "test-filename" }),
@@ -40,14 +53,14 @@ button.addEventListener("click", () => {
   setTimeout(
     () =>
       canvasScreenshot(context.canvas, {
-        filename: "test-filename-type.png"
+        filename: "test-type.png"
       }),
     300
   );
   setTimeout(
     () =>
       canvasScreenshot(context.canvas, {
-        filename: "test-filename-quality.jpg",
+        filename: "test-quality.jpg",
         quality: 0.1
       }),
     400
