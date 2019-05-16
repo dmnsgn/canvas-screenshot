@@ -15,17 +15,45 @@ function takeCanvasScreenshot(canvas, options = {}) {
       .toTimeString()
       .slice(0, 8)
       .replace(/:/g, ".")}.png`,
-    quality = 1
+    quality = 1,
+    useBlob,
+    download = true
   } = {
     ...options
   };
 
-  link = link || document.createElement("a");
-  link.download = filename;
-  link.href = canvas.toDataURL(`${getType(filename)};base64`, quality);
+  if (download) {
+    link = link || document.createElement("a");
+    link.download = filename;
+  }
 
-  const event = new MouseEvent("click");
-  link.dispatchEvent(event);
+  if (useBlob) {
+    return new Promise(resolve => {
+      canvas.toBlob(
+        blob => {
+          if (download) {
+            link.href = URL.createObjectURL(blob);
+            const event = new MouseEvent("click");
+            link.dispatchEvent(event);
+          }
+
+          resolve(blob);
+        },
+        getType(filename),
+        quality
+      );
+    });
+  }
+
+  const dataURL = canvas.toDataURL(`${getType(filename)};base64`, quality);
+
+  if (download) {
+    link.href = dataURL;
+    const event = new MouseEvent("click");
+    link.dispatchEvent(event);
+  }
+
+  return dataURL;
 }
 
 module.exports = takeCanvasScreenshot;
