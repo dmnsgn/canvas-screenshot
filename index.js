@@ -32,9 +32,14 @@ function takeCanvasScreenshot(canvas, options = {}) {
       canvas.toBlob(
         blob => {
           if (download) {
-            link.href = URL.createObjectURL(blob);
+            const url = URL.createObjectURL(blob);
+            link.href = url;
             const event = new MouseEvent("click");
             link.dispatchEvent(event);
+
+            setTimeout(() => {
+              URL.revokeObjectURL(url);
+            }, 1);
           }
 
           resolve(blob);

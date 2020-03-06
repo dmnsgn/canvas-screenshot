@@ -28,7 +28,7 @@ button.addEventListener("click", async () => {
   await canvasScreenshot(context.canvas, {
     filename: "test-blob",
     useBlob: true
-  })
+  });
   const dataURL = canvasScreenshot(context.canvas, {
     download: false
   });
@@ -36,26 +36,49 @@ button.addEventListener("click", async () => {
     filename: "test-blob",
     useBlob: true,
     download: false
-  })
+  });
   console.log(dataURL, blob);
+
+  // This is fine in Chromium
+  // requestAnimationFrame(() => {
+  //   canvasScreenshot(context.canvas, { filename: "test-filename" }),
+  //     requestAnimationFrame(() => {
+  //       canvasScreenshot(context.canvas, {
+  //         filename: "test-filename-extension.jpg"
+  //       });
+  //       requestAnimationFrame(() => {
+  //         canvasScreenshot(context.canvas, {
+  //           filename: "test-type.png"
+  //         });
+  //         requestAnimationFrame(() => {
+  //           canvasScreenshot(context.canvas, {
+  //             filename: "test-quality.jpg",
+  //             quality: 0.1
+  //           });
+  //         });
+  //       });
+  //     });
+  // });
+
+  const delayNeededWhenNotChromium = 1000
 
   setTimeout(
     () => canvasScreenshot(context.canvas, { filename: "test-filename" }),
-    100
+    1 * delayNeededWhenNotChromium
   );
   setTimeout(
     () =>
       canvasScreenshot(context.canvas, {
         filename: "test-filename-extension.jpg"
       }),
-    200
+    2 * delayNeededWhenNotChromium
   );
   setTimeout(
     () =>
       canvasScreenshot(context.canvas, {
         filename: "test-type.png"
       }),
-    300
+    3 * delayNeededWhenNotChromium
   );
   setTimeout(
     () =>
@@ -63,6 +86,6 @@ button.addEventListener("click", async () => {
         filename: "test-quality.jpg",
         quality: 0.1
       }),
-    400
+    4 * delayNeededWhenNotChromium
   );
 });
