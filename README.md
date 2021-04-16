@@ -100,8 +100,8 @@ Options for canvas screenshot. All optional.
 | ---------- | -------------------- | --------------------------------------------------------------- | -------------------------------------- |
 | [filename] | <code>string</code>  | <code>&quot;Screen Shot YYYY-MM-DD at HH.MM.SS.png&quot;</code> | File name.                             |
 | [quality]  | <code>number</code>  | <code>1</code>                                                  | Quality between 0 and 1.               |
-| [useBlob]  | <code>boolean</code> | <code>&quot;undefined&quot;</code>                              | Use `canvas.toBlob`.                   |
-| [download] | <code>boolean</code> | <code>trye</code>                                               | Automatically download the screenshot. |
+| [useBlob]  | <code>boolean</code> |                                                                 | Use `canvas.toBlob`.                   |
+| [download] | <code>boolean</code> | <code>true</code>                                               | Automatically download the screenshot. |
 
 <!-- api-end -->
 
