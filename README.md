@@ -51,7 +51,57 @@ button.addEventListener("click", () => {
 
 <!-- api-start -->
 
-Auto-generated API content.
+## Modules
+
+<dl>
+<dt><a href="#module_canvasScreenshot">canvasScreenshot</a></dt>
+<dd></dd>
+</dl>
+
+## Typedefs
+
+<dl>
+<dt><a href="#CanvasScreenshotOptions">CanvasScreenshotOptions</a> : <code>Object</code></dt>
+<dd><p>Options for canvas screenshot. All optional.</p>
+</dd>
+</dl>
+
+<a name="module_canvasScreenshot"></a>
+
+## canvasScreenshot
+
+<a name="exp_module_canvasScreenshot--canvasScreenshot"></a>
+
+### canvasScreenshot(canvas, [options]) ⇒ <code>string</code> \| <code>Promise.&lt;Blob&gt;</code> ⏏
+
+Take a screenshot.
+Setting `options.useBlob` to `true` will consequently make the module async and return the latter.
+
+**Kind**: Exported function  
+**Returns**: <code>string</code> \| <code>Promise.&lt;Blob&gt;</code> - A `DOMString` or a `Promise` resolving with a `Blob`.
+
+Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
+
+| Param     | Type                                                             | Default         | Description        |
+| --------- | ---------------------------------------------------------------- | --------------- | ------------------ |
+| canvas    | <code>HTMLCanvasElement</code>                                   |                 | The canvas element |
+| [options] | [<code>CanvasScreenshotOptions</code>](#CanvasScreenshotOptions) | <code>{}</code> |                    |
+
+<a name="CanvasScreenshotOptions"></a>
+
+## CanvasScreenshotOptions : <code>Object</code>
+
+Options for canvas screenshot. All optional.
+
+**Kind**: global typedef  
+**Properties**
+
+| Name       | Type                 | Default                                                         | Description                            |
+| ---------- | -------------------- | --------------------------------------------------------------- | -------------------------------------- |
+| [filename] | <code>string</code>  | <code>&quot;Screen Shot YYYY-MM-DD at HH.MM.SS.png&quot;</code> | File name.                             |
+| [quality]  | <code>number</code>  | <code>1</code>                                                  | Quality between 0 and 1.               |
+| [useBlob]  | <code>boolean</code> | <code>&quot;undefined&quot;</code>                              | Use `canvas.toBlob`.                   |
+| [download] | <code>boolean</code> | <code>trye</code>                                               | Automatically download the screenshot. |
 
 <!-- api-end -->
 
