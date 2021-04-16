@@ -1,11 +1,22 @@
-# canvas-screenshot [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
+# canvas-screenshot
 
-[![npm version](https://badge.fury.io/js/canvas-screenshot.svg)](https://www.npmjs.com/package/canvas-screenshot)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![npm version](https://img.shields.io/npm/v/canvas-screenshot)](https://www.npmjs.com/package/canvas-screenshot)
+[![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)](https://www.npmjs.com/package/canvas-screenshot)
+[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/canvas-screenshot)](https://www.npmjs.com/package/canvas-screenshot)
+[![dependencies](https://img.shields.io/david/dmnsgn/canvas-screenshot)](https://github.com/dmnsgn/canvas-screenshot/blob/main/package.json)
+[![types](https://img.shields.io/npm/types/canvas-screenshot)](https://github.com/microsoft/TypeScript)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fa6673.svg)](https://conventionalcommits.org)
+[![styled with prettier](https://img.shields.io/badge/styled_with-Prettier-f8bc45.svg?logo=prettier)](https://github.com/prettier/prettier)
+[![linted with eslint](https://img.shields.io/badge/linted_with-ES_Lint-4B32C3.svg?logo=eslint)](https://github.com/eslint/eslint)
+[![license](https://img.shields.io/github/license/dmnsgn/canvas-screenshot)](https://github.com/dmnsgn/canvas-screenshot/blob/main/LICENSE.md)
 
 A one trick pony package to download an image from a canvas.
 
-![](https://raw.githubusercontent.com/dmnsgn/canvas-screenshot/master/screenshot.gif)
+[![paypal](https://img.shields.io/badge/donate-paypal-informational?logo=paypal)](https://paypal.me/dmnsgn)
+[![coinbase](https://img.shields.io/badge/donate-coinbase-informational?logo=coinbase)](https://commerce.coinbase.com/checkout/56cbdf28-e323-48d8-9c98-7019e72c97f3)
+[![twitter](https://img.shields.io/twitter/follow/dmnsgn?style=social)](https://twitter.com/dmnsgn)
+
+![](https://raw.githubusercontent.com/dmnsgn/canvas-screenshot/main/screenshot.gif)
 
 ## Installation
 
@@ -13,42 +24,37 @@ A one trick pony package to download an image from a canvas.
 npm install canvas-screenshot
 ```
 
-[![NPM](https://nodei.co/npm/canvas-screenshot.png)](https://nodei.co/npm/canvas-screenshot/)
-
 ## Usage
 
 ```js
-const canvasScreenshot = require("canvas-screenshot");
-const createCanvasContext = require("canvas-context");
+import canvasScreenshot from "canvas-screenshot";
+import canvasContext from "canvas-context";
 
-const { context } = createCanvasContext("2d", {
+// Create
+const { context, canvas } = canvasContext("2d", {
   width: 100,
-  height: 100
+  height: 100,
 });
 
+// Draw
+context.fillStyle = "salmon";
+context.fillRect(40, 40, 20, 20);
+
+// Export
 const button = document.createElement("button");
 button.addEventListener("click", () => {
-  canvasScreenshot(context.canvas);
+  canvasScreenshot(canvas);
 });
 ```
 
 ## API
 
-### `canvasScreenshot(canvas, options): DOMString | Promise<Blob>`
+<!-- api-start -->
 
-Returns a `Data URI` or a Promise resolving with a Blob.
-Setting `useBlob` to `true` will consequently make the module async and return the latter.
+Auto-generated API content.
 
-| Option               | Type              | Default                                  | Description                           |
-| -------------------- | ----------------- | ---------------------------------------- | ------------------------------------- |
-| **canvas**           | HTMLCanvasElement |                                          | The canvas element                    |
-| **options.filename** | string?           | `Screen Shot YYYY-MM-DD at HH.MM.SS.png` | File name                             |
-| **options.quality**  | number?           | 1                                        | Quality between 0 and 1               |
-| **options.useBlob**  | boolean?          | undefined                                | Use `canvas.toBlob`                   |
-| **options.download** | boolean?          | true                                     | Automatically download the screenshot |
-
-Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
+<!-- api-end -->
 
 ## License
 
-MIT. See [license file](https://github.com/dmnsgn/canvas-screenshot/blob/master/LICENSE.md).
+MIT. See [license file](https://github.com/dmnsgn/canvas-screenshot/blob/main/LICENSE.md).

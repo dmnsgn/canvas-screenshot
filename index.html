@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      canvas-screenshot by Damien Seguin (https://github.com/dmnsgn)
+    </title>
+    <style>
+      :root {
+        --color-dark: #404040;
+        --color-light: #f2f2f2;
+        --color-accent: #fd5e62;
+      }
+
+      body {
+        margin: 0;
+        overscroll-behavior: none;
+        font-family: sans-serif;
+        color: var(--color-dark);
+        background-color: var(--color-light);
+      }
+
+      main {
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>canvas-screenshot</h1>
+    </main>
+    <script async src="web_modules/es-module-shims.js"></script>
+    <script src="web_modules/import-map.json" type="importmap"></script>
+
+    <script type="module">
+      import canvasScreenshot from "./index.js";
+
+      import canvasContext from "canvas-context";
+
+      const width = 100;
+      const height = 100;
+      const { context } = canvasContext("2d", {
+        width,
+        height,
+      });
+
+      const mainElement = document.querySelector("main");
+      mainElement.appendChild(context.canvas);
+
+      context.fillRect(0, 0, width, height);
+
+      context.fillStyle = `${window
+        .getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-accent")}`;
+      context.fillRect(40, 40, 20, 20);
+
+      const button = document.createElement("button");
+      button.innerText = "Takes screenshots";
+      mainElement.appendChild(button);
+
+      button.addEventListener("click", async () => {
+        canvasScreenshot(context.canvas);
+        await canvasScreenshot(context.canvas, {
+          filename: "test-blob",
+          useBlob: true,
+        });
+        const dataURL = canvasScreenshot(context.canvas, {
+          download: false,
+        });
+        const blob = await canvasScreenshot(context.canvas, {
+          filename: "test-blob",
+          useBlob: true,
+          download: false,
+        });
+        console.log(dataURL, blob);
+
+        // This is fine in Chromium
+        // requestAnimationFrame(() => {
+        //   canvasScreenshot(context.canvas, { filename: "test-filename" }),
+        //     requestAnimationFrame(() => {
+        //       canvasScreenshot(context.canvas, {
+        //         filename: "test-filename-extension.jpg"
+        //       });
+        //       requestAnimationFrame(() => {
+        //         canvasScreenshot(context.canvas, {
+        //           filename: "test-type.png"
+        //         });
+        //         requestAnimationFrame(() => {
+        //           canvasScreenshot(context.canvas, {
+        //             filename: "test-quality.jpg",
+        //             quality: 0.1
+        //           });
+        //         });
+        //       });
+        //     });
+        // });
+
+        const delayNeededWhenNotChromium = 1000;
+
+        setTimeout(
+          () => canvasScreenshot(context.canvas, { filename: "test-filename" }),
+          1 * delayNeededWhenNotChromium
+        );
+        setTimeout(
+          () =>
+            canvasScreenshot(context.canvas, {
+              filename: "test-filename-extension.jpg",
+            }),
+          2 * delayNeededWhenNotChromium
+        );
+        setTimeout(
+          () =>
+            canvasScreenshot(context.canvas, {
+              filename: "test-type.png",
+            }),
+          3 * delayNeededWhenNotChromium
+        );
+        setTimeout(
+          () =>
+            canvasScreenshot(context.canvas, {
+              filename: "test-quality.jpg",
+              quality: 0.1,
+            }),
+          4 * delayNeededWhenNotChromium
+        );
+      });
+    </script>
+  </body>
+</html>

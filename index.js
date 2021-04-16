@@ -1,25 +1,48 @@
-const fileExtension = require("file-extension");
+/**
+ * @module canvasScreenshot
+ */
+
+import fileExtension from "file-extension";
 
 let link = null;
 
+/**
+ * Get the mimetype
+ *
+ * @private
+ * @param {string} filename
+ * @returns {string}
+ */
 function getType(filename) {
   const ext = fileExtension(filename);
   return ["jpg", "jpeg"].includes(ext) ? "image/jpeg" : "image/png";
 }
 
-function takeCanvasScreenshot(canvas, options = {}) {
+/**
+ * Take a screenshot.
+ * Setting `options.useBlob` to `true` will consequently make the module async and return the latter.
+ * @alias module:canvasScreenshot
+ * @param {HTMLCanvasElement} canvas The canvas element
+ * @param {import("./types.js").CanvasScreenshotOptions} [options={}]
+ * @returns {string | Promise<Blob>} A `DOMString` or a `Promise` resolving with a `Blob`.
+ *
+ * Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
+ */
+function canvasScreenshot(canvas, options = {}) {
   const date = new Date();
 
   const {
-    filename = `Screen Shot ${date.toISOString().slice(0, 10)} at ${date
+    filename = `Screen Shot ${date
+      .toISOString()
+      .slice(0, 10)} at ${date
       .toTimeString()
       .slice(0, 8)
       .replace(/:/g, ".")}.png`,
     quality = 1,
     useBlob,
-    download = true
+    download = true,
   } = {
-    ...options
+    ...options,
   };
 
   if (download) {
@@ -28,9 +51,9 @@ function takeCanvasScreenshot(canvas, options = {}) {
   }
 
   if (useBlob) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       canvas.toBlob(
-        blob => {
+        (blob) => {
           if (download) {
             const url = URL.createObjectURL(blob);
             link.href = url;
@@ -61,4 +84,4 @@ function takeCanvasScreenshot(canvas, options = {}) {
   return dataURL;
 }
 
-module.exports = takeCanvasScreenshot;
+export default canvasScreenshot;
