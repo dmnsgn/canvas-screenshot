@@ -1,6 +1,6 @@
 {
   "name": "canvas-screenshot",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "A one trick pony package to download an image from a canvas.",
   "keywords": [
     "canvas",

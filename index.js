@@ -32,9 +32,7 @@ function canvasScreenshot(canvas, options = {}) {
   const date = new Date();
 
   const {
-    filename = `Screen Shot ${date
-      .toISOString()
-      .slice(0, 10)} at ${date
+    filename = `Screen Shot ${date.toISOString().slice(0, 10)} at ${date
       .toTimeString()
       .slice(0, 8)
       .replace(/:/g, ".")}.png`,
