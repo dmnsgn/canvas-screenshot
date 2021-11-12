@@ -2,8 +2,8 @@
 
 [![npm version](https://img.shields.io/npm/v/canvas-screenshot)](https://www.npmjs.com/package/canvas-screenshot)
 [![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)](https://www.npmjs.com/package/canvas-screenshot)
-[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/canvas-screenshot)](https://www.npmjs.com/package/canvas-screenshot)
-[![dependencies](https://img.shields.io/david/dmnsgn/canvas-screenshot)](https://github.com/dmnsgn/canvas-screenshot/blob/main/package.json)
+[![npm minzipped size](https://img.shields.io/bundlephobia/minzip/canvas-screenshot)](https://bundlephobia.com/package/canvas-screenshot)
+[![dependencies](https://img.shields.io/librariesio/release/npm/canvas-screenshot)](https://github.com/dmnsgn/canvas-screenshot/blob/main/package.json)
 [![types](https://img.shields.io/npm/types/canvas-screenshot)](https://github.com/microsoft/TypeScript)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fa6673.svg)](https://conventionalcommits.org)
 [![styled with prettier](https://img.shields.io/badge/styled_with-Prettier-f8bc45.svg?logo=prettier)](https://github.com/prettier/prettier)
