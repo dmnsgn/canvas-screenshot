@@ -1,31 +1,24 @@
-function createCommonjsModule(fn, basedir, module) {
-	return module = {
-		path: basedir,
-		exports: {},
-		require: function (path, base) {
-			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-		}
-	}, fn(module, module.exports), module.exports;
-}
+import { g as getDefaultExportFromCjs } from './_chunks/_commonjsHelpers-jjO7Zipk.js';
 
-function commonjsRequire () {
-	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-}
+var fileExtension$1 = {exports: {}};
 
-var fileExtension = createCommonjsModule(function (module, exports) {
+(function(module, exports) {
+    (function(m) {
+        {
+            module.exports = m();
+        }
+    })(function() {
+        return function fileExtension(filename, opts) {
+            if (!opts) opts = {};
+            if (!filename) return "";
+            var ext = (/[^./\\]*$/.exec(filename) || [
+                ""
+            ])[0];
+            return opts.preserveCase ? ext : ext.toLowerCase();
+        };
+    });
+})(fileExtension$1);
+var fileExtensionExports = fileExtension$1.exports;
+var fileExtension = /*@__PURE__*/ getDefaultExportFromCjs(fileExtensionExports);
 
-  (function (m) {
-    {
-      module.exports = m();
-    }
-  })(function () {
-    return function fileExtension(filename, opts) {
-      if (!opts) opts = {};
-      if (!filename) return "";
-      var ext = (/[^./\\]*$/.exec(filename) || [""])[0];
-      return opts.preserveCase ? ext : ext.toLowerCase();
-    };
-  });
-});
-
-export default fileExtension;
+export { fileExtension as default };

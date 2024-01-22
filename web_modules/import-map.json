@@ -1,7 +1,9 @@
 {
   "imports": {
+    "file-extension": "./file-extension.js",
     "canvas-context": "./canvas-context.js",
     "es-module-shims": "./es-module-shims.js",
-    "file-extension": "./file-extension.js"
+    "es-module-shims/debug": "./es-module-shims/dist/es-module-shims.debug.js",
+    "es-module-shims/wasm": "./es-module-shims/dist/es-module-shims.wasm.js"
   }
 }
