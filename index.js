@@ -1,13 +1,11 @@
-/**
- * @module canvasScreenshot
- */
+/** @module canvasScreenshot */
 
 import fileExtension from "file-extension";
 
 let link = null;
 
 /**
- * Get the mimetype
+ * Get the MIME type
  *
  * @private
  * @param {string} filename
@@ -15,7 +13,7 @@ let link = null;
  */
 function getType(filename) {
   const ext = fileExtension(filename);
-  return ["jpg", "jpeg"].includes(ext) ? "image/jpeg" : "image/png";
+  return `image/${ext === "jpg" ? "jpeg" : ext || "png"}`;
 }
 
 /**
@@ -26,7 +24,10 @@ function getType(filename) {
  * @param {import("./types.js").CanvasScreenshotOptions} [options={}]
  * @returns {string | Promise<Blob>} A `DOMString` or a `Promise` resolving with a `Blob`.
  *
- * Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
+ * Type is inferred from the filename extension:
+ * - png for `"image/png"` (default)
+ * - jpg/jpeg for `"image/jpeg"`
+ * - webp for `"image/webp"`
  */
 function canvasScreenshot(canvas, options = {}) {
   const date = new Date();
@@ -66,7 +67,7 @@ function canvasScreenshot(canvas, options = {}) {
           resolve(blob);
         },
         getType(filename),
-        quality
+        quality,
       );
     });
   }
