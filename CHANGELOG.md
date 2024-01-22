@@ -1,6 +1,15 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+# [4.2.0](https://github.com/dmnsgn/canvas-screenshot/compare/v4.1.0...v4.2.0) (2024-01-22)
+
+
+### Features
+
+* add support for image/webp ([b645d38](https://github.com/dmnsgn/canvas-screenshot/commit/b645d38355a6fe227691848fd14b419569c09d7f))
+
+
 
 # [4.1.0](https://github.com/dmnsgn/canvas-screenshot/compare/v4.0.1...v4.1.0) (2021-10-02)
 

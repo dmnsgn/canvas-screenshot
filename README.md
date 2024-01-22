@@ -61,7 +61,7 @@ button.addEventListener("click", () => {
 ## Typedefs
 
 <dl>
-<dt><a href="#CanvasScreenshotOptions">CanvasScreenshotOptions</a> : <code>Object</code></dt>
+<dt><a href="#CanvasScreenshotOptions">CanvasScreenshotOptions</a> : <code>object</code></dt>
 <dd><p>Options for canvas screenshot. All optional.</p>
 </dd>
 </dl>
@@ -77,10 +77,14 @@ button.addEventListener("click", () => {
 Take a screenshot.
 Setting `options.useBlob` to `true` will consequently make the module async and return the latter.
 
-**Kind**: Exported function  
+**Kind**: Exported function
 **Returns**: <code>string</code> \| <code>Promise.&lt;Blob&gt;</code> - A `DOMString` or a `Promise` resolving with a `Blob`.
 
-Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and default to `"image/png"`.
+Type is inferred from the filename extension:
+
+- png for `"image/png"` (default)
+- jpg/jpeg for `"image/jpeg"`
+- webp for `"image/webp"`
 
 | Param     | Type                                                             | Default         | Description        |
 | --------- | ---------------------------------------------------------------- | --------------- | ------------------ |
@@ -89,11 +93,11 @@ Type is inferred from the filename extension (jpg/jpeg) for `"image/jpeg"` and d
 
 <a name="CanvasScreenshotOptions"></a>
 
-## CanvasScreenshotOptions : <code>Object</code>
+## CanvasScreenshotOptions : <code>object</code>
 
 Options for canvas screenshot. All optional.
 
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name       | Type                 | Default                                                         | Description                            |
