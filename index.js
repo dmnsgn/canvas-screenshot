@@ -20,7 +20,6 @@ function getType(filename) {
  * @private
  * @param {string} filename
  * @param {string} url
- * @returns {string}
  */
 function downloadURL(filename, url) {
   const link = document.createElement("a");
