@@ -37,6 +37,7 @@ function canvasScreenshot(canvas, options = {}) {
       .toTimeString()
       .slice(0, 8)
       .replace(/:/g, ".")}.png`,
+    type = getType(filename),
     quality = 1,
     useBlob,
     download = true,
@@ -66,13 +67,13 @@ function canvasScreenshot(canvas, options = {}) {
 
           resolve(blob);
         },
-        getType(filename),
+        type,
         quality,
       );
     });
   }
 
-  const dataURL = canvas.toDataURL(`${getType(filename)};base64`, quality);
+  const dataURL = canvas.toDataURL(type, quality);
 
   if (download) {
     link.href = dataURL;
