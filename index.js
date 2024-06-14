@@ -12,7 +12,7 @@ let link = null;
  * @returns {string}
  */
 function getType(filename) {
-  const ext = fileExtension(filename);
+  const ext = filename.includes(".") && fileExtension(filename);
   return `image/${ext === "jpg" ? "jpeg" : ext || "png"}`;
 }
 
