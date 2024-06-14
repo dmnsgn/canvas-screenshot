@@ -2,8 +2,6 @@
 
 import fileExtension from "file-extension";
 
-let link = null;
-
 /**
  * Get the MIME type
  *
@@ -14,6 +12,22 @@ let link = null;
 function getType(filename) {
   const ext = filename.includes(".") && fileExtension(filename);
   return `image/${ext === "jpg" ? "jpeg" : ext || "png"}`;
+}
+
+/**
+ * Download in browser using a DOM link
+ *
+ * @private
+ * @param {string} filename
+ * @param {string} url
+ * @returns {string}
+ */
+function downloadURL(filename, url) {
+  const link = document.createElement("a");
+  link.download = filename;
+  link.href = url;
+  const event = new MouseEvent("click");
+  link.dispatchEvent(event);
 }
 
 /**
@@ -45,20 +59,13 @@ function canvasScreenshot(canvas, options = {}) {
     ...options,
   };
 
-  if (download) {
-    link = link || document.createElement("a");
-    link.download = filename;
-  }
-
   if (useBlob) {
     return new Promise((resolve) => {
       canvas.toBlob(
         (blob) => {
           if (download) {
             const url = URL.createObjectURL(blob);
-            link.href = url;
-            const event = new MouseEvent("click");
-            link.dispatchEvent(event);
+            downloadURL(filename, url);
 
             setTimeout(() => {
               URL.revokeObjectURL(url);
@@ -75,11 +82,7 @@ function canvasScreenshot(canvas, options = {}) {
 
   const dataURL = canvas.toDataURL(type, quality);
 
-  if (download) {
-    link.href = dataURL;
-    const event = new MouseEvent("click");
-    link.dispatchEvent(event);
-  }
+  if (download) downloadURL(filename, dataURL);
 
   return dataURL;
 }

@@ -61,6 +61,18 @@ button.addEventListener("click", async () => {
   });
   console.log(dataURL, blob);
 
+  const dataURLJpg = canvasScreenshot(context.canvas, {
+    download: false,
+    type: "image/jpeg",
+  });
+  const blobJpg = await canvasScreenshot(context.canvas, {
+    filename: "test-blob",
+    useBlob: true,
+    download: false,
+    type: "image/jpeg",
+  });
+  console.log(dataURLJpg, blobJpg);
+
   // This is fine in Chromium
   // requestAnimationFrame(() => {
   //   canvasScreenshot(context.canvas, { filename: "test-filename" }),
