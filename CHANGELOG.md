@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [4.2.1](https://github.com/dmnsgn/canvas-screenshot/compare/v4.2.0...v4.2.1) (2024-06-14)
+
+
+### Bug Fixes
+
+* don't reuse the DOM link for simultaneous download to work ([1b07235](https://github.com/dmnsgn/canvas-screenshot/commit/1b07235c2c5d199ba6045d4ebf091281a442a29d)), closes [#10](https://github.com/dmnsgn/canvas-screenshot/issues/10)
+* handle extension less filename in getType ([e9d11b7](https://github.com/dmnsgn/canvas-screenshot/commit/e9d11b7101e5d8278046af448c277451da8ab5e3))
+* use type in toDataURL ([d82fde3](https://github.com/dmnsgn/canvas-screenshot/commit/d82fde39c3f7361da07f8788f393ec615925f420))
+
+
+
 # [4.2.0](https://github.com/dmnsgn/canvas-screenshot/compare/v4.1.0...v4.2.0) (2024-01-22)
 
 
