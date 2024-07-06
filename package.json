@@ -32,7 +32,7 @@
     "file-extension": "^4.0.5"
   },
   "devDependencies": {
-    "canvas-context": "^3.2.0",
+    "canvas-context": "^3.3.0",
     "es-module-shims": "^1.10.0"
   },
   "engines": {

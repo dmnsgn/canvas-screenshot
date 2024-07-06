@@ -1,6 +1,4 @@
-/**
- * @module createCanvasContext
- */ const contextTypeList = [
+/** @module createCanvasContext */ const contextTypeList = [
     "2d",
     "webgl",
     "experimental-webgl",
@@ -47,6 +45,7 @@
     try {
         context = canvas.getContext(contextType, contextAttributes) || (contextType === "webgl" ? canvas.getContext("experimental-webgl", contextAttributes) : null);
     } catch (error) {
+        console.error(error);
         context = null;
     }
     return {
