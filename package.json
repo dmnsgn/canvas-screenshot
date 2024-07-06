@@ -1,6 +1,6 @@
 {
   "name": "canvas-screenshot",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "A one trick pony package to download an image from a canvas.",
   "keywords": [
     "canvas",
@@ -10,7 +10,10 @@
   ],
   "homepage": "https://github.com/dmnsgn/canvas-screenshot",
   "bugs": "https://github.com/dmnsgn/canvas-screenshot/issues",
-  "repository": "dmnsgn/canvas-screenshot",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmnsgn/canvas-screenshot.git"
+  },
   "funding": [
     {
       "type": "individual",
