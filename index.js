@@ -87,3 +87,5 @@ function canvasScreenshot(canvas, options = {}) {
 }
 
 export default canvasScreenshot;
+
+export * from "./types.js";
