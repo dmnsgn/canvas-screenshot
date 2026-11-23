@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+# [5.0.0](https://github.com/dmnsgn/canvas-screenshot/compare/v4.2.2...v5.0.0) (2026-11-23)
+
+### Bug Fixes
+
+* don't download by default without a DOM ([cd61949](https://github.com/dmnsgn/canvas-screenshot/commit/cd6194906d99b7c7cc77249bdfdd5cab6b0a91b6))
+* match default filename extension with type ([d6b4c15](https://github.com/dmnsgn/canvas-screenshot/commit/d6b4c158697d714061e64c2e2ee8aa2019121d3e))
+* use UTC for both date and time in default filename ([1c646ce](https://github.com/dmnsgn/canvas-screenshot/commit/1c646ceaf0cef4e43856d08f0dcdadf22a11931a))
+
+### Features
+
+* use "Screenshot" in default filename ([d40015c](https://github.com/dmnsgn/canvas-screenshot/commit/d40015c991a9a8cbcac1544adde2cc8b234e0d46))
+
+### BREAKING CHANGES
+
+* use UTC
+
 ## [4.2.2](https://github.com/dmnsgn/canvas-screenshot/compare/v4.2.1...v4.2.2) (2024-07-06)
 
 

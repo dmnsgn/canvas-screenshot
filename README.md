@@ -73,7 +73,8 @@ const blob = await canvasScreenshot(offscreenCanvas, {
 
 <dl>
 <dt><a href="#CanvasScreenshotOptions">CanvasScreenshotOptions</a> : <code>object</code></dt>
-<dd><p>Options for canvas screenshot. All optional.</p>
+<dd><p>Options for canvas screenshot. All
+  optional.</p>
 </dd>
 </dl>
 
@@ -85,38 +86,42 @@ const blob = await canvasScreenshot(offscreenCanvas, {
 
 ### canvasScreenshot(canvas, [options]) ⇒ <code>string</code> \| <code>Promise.&lt;Blob&gt;</code> ⏏
 
-Take a screenshot.
-Setting `options.useBlob` to `true` will consequently make the module async and return the latter.
+Take a screenshot. Setting `options.useBlob` to `true` will consequently make
+the module async and return the latter. An `OffscreenCanvas` has no data URL:
+it always returns a `Promise` resolving with a `Blob`.
 
 **Kind**: Exported function
-**Returns**: <code>string</code> \| <code>Promise.&lt;Blob&gt;</code> - A `DOMString` or a `Promise` resolving with a `Blob`.
+**Returns**: <code>string</code> \| <code>Promise.&lt;Blob&gt;</code> - A `DOMString` or a `Promise` resolving with
+a `Blob`.
 
 Type is inferred from the filename extension:
 
-- png for `"image/png"` (default)
-- jpg/jpeg for `"image/jpeg"`
-- webp for `"image/webp"`
+- "png" for `"image/png"` (default)
+- "jpg/jpeg" for `"image/jpeg"`
+- "webp for" `"image/webp"`
 
 | Param     | Type                                                             | Default         | Description        |
 | --------- | ---------------------------------------------------------------- | --------------- | ------------------ |
-| canvas    | <code>HTMLCanvasElement</code>                                   |                 | The canvas element |
+| canvas    | <code>HTMLCanvasElement</code> \| <code>OffscreenCanvas</code>   |                 | The canvas element |
 | [options] | [<code>CanvasScreenshotOptions</code>](#CanvasScreenshotOptions) | <code>{}</code> |                    |
 
 <a name="CanvasScreenshotOptions"></a>
 
 ## CanvasScreenshotOptions : <code>object</code>
 
-Options for canvas screenshot. All optional.
+Options for canvas screenshot. All
+optional.
 
 **Kind**: global typedef
 **Properties**
 
-| Name       | Type                 | Default                                                         | Description                            |
-| ---------- | -------------------- | --------------------------------------------------------------- | -------------------------------------- |
-| [filename] | <code>string</code>  | <code>&quot;Screen Shot YYYY-MM-DD at HH.MM.SS.png&quot;</code> | File name.                             |
-| [quality]  | <code>number</code>  | <code>1</code>                                                  | Quality between 0 and 1.               |
-| [useBlob]  | <code>boolean</code> |                                                                 | Use `canvas.toBlob`.                   |
-| [download] | <code>boolean</code> | <code>true</code>                                               | Automatically download the screenshot. |
+| Name       | Type                 | Default                                                        | Description                                                                                                             |
+| ---------- | -------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| [filename] | <code>string</code>  | <code>&quot;Screenshot YYYY-MM-DD at HH.MM.SS.png&quot;</code> | File name. The default uses UTC time and an extension matching `type`.                                                  |
+| [type]     | <code>string</code>  |                                                                | MIME type. Inferred from the filename extension by default. Unsupported types are encoded as PNG, as per the HTML spec. |
+| [quality]  | <code>number</code>  | <code>1</code>                                                 | Quality between 0 and 1.                                                                                                |
+| [useBlob]  | <code>boolean</code> |                                                                | Use `canvas.toBlob` or `canvas.convertToBlob`. Always true for an `OffscreenCanvas`.                                    |
+| [download] | <code>boolean</code> |                                                                | Automatically download the screenshot. Defaults to `true` when a DOM is available (`false` in workers).                 |
 
 <!-- api-end -->
 
