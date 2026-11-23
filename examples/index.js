@@ -1,4 +1,4 @@
-import canvasScreenshot from "../index.js";
+import canvasScreenshot from "canvas-screenshot";
 
 import canvasContext from "canvas-context";
 
@@ -10,14 +10,14 @@ const { context } = canvasContext("2d", {
 });
 
 const mainElement = document.querySelector("main");
-mainElement.appendChild(context.canvas);
+mainElement.append(context.canvas);
 
 context.fillRect(0, 0, width, height);
 
 context.lineWidth = width * 0.004;
-context.strokeStyle = `${window
-  .getComputedStyle(document.documentElement)
-  .getPropertyValue("--color-accent")}`;
+context.strokeStyle = getComputedStyle(
+  document.documentElement,
+).getPropertyValue("--color-accent");
 
 const margin = width * 0.2;
 width -= margin;
@@ -42,8 +42,8 @@ for (let i = 0; i < divisions; i++) {
 }
 
 const button = document.createElement("button");
-button.innerText = "Takes screenshots";
-mainElement.appendChild(button);
+button.textContent = "Takes screenshots";
+mainElement.append(button);
 
 button.addEventListener("click", async () => {
   canvasScreenshot(context.canvas);

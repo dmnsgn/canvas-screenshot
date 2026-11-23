@@ -1,17 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>
       canvas-screenshot by Damien Seguin (https://github.com/dmnsgn)
     </title>
     <style>
       :root {
-        --color-dark: #404040;
+        --color-dark: #222222;
         --color-light: #f2f2f2;
-        --color-accent: #fd5e62;
+        --color-accent: #95171d;
       }
 
       body {
@@ -23,24 +22,25 @@
       }
 
       main {
-        padding: 0 20px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        padding: 0 20px;
       }
 
       button {
         margin-top: 10px;
       }
     </style>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
   </head>
   <body>
     <main>
       <h1>canvas-screenshot</h1>
     </main>
-    <script async src="web_modules/es-module-shims.js" type="module"></script>
-    <script src="web_modules/import-map.json" type="importmap-shim"></script>
+    <script type="module" async src="web_modules/es-module-shims.js"></script>
+    <script type="importmap-shim" src="web_modules/import-map.json"></script>
 
-    <script src="./examples/index.js" type="module-shim"></script>
+    <script type="module-shim" src="./examples/index.js"></script>
   </body>
 </html>
