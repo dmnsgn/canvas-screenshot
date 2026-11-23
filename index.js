@@ -111,7 +111,7 @@ function canvasScreenshot(canvas, options = {}) {
     type = getType(filename),
     quality = 1,
     useBlob,
-    download = true,
+    download = typeof document !== "undefined",
   } = {
     ...options,
   };
