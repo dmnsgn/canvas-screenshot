@@ -22,10 +22,9 @@ function getType(filename) {
  * @returns {string}
  */
 function getDefaultFilename(type) {
-  const date = new Date();
-  const day = date.toISOString().slice(0, 10);
-  const time = date.toTimeString().slice(0, 8).replaceAll(":", ".");
-  return `Screenshot ${day} at ${time}.${type.slice(type.indexOf("/") + 1)}`;
+  const [day, time] = new Date().toISOString().slice(0, 19).split("T", 2);
+  const extension = type.slice(type.indexOf("/") + 1);
+  return `Screenshot ${day} at ${time.replaceAll(":", ".")}.${extension}`;
 }
 
 /**
