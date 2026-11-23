@@ -10,8 +10,22 @@ import fileExtension from "file-extension";
  * @returns {string}
  */
 function getType(filename) {
-  const ext = filename.includes(".") && fileExtension(filename);
+  const ext = filename?.includes(".") && fileExtension(filename);
   return `image/${ext === "jpg" ? "jpeg" : ext || "png"}`;
+}
+
+/**
+ * Get a macOS-like screenshot file name
+ *
+ * @private
+ * @param {string} type
+ * @returns {string}
+ */
+function getDefaultFilename(type) {
+  const date = new Date();
+  const day = date.toISOString().slice(0, 10);
+  const time = date.toTimeString().slice(0, 8).replaceAll(":", ".");
+  return `Screen Shot ${day} at ${time}.${type.slice(type.indexOf("/") + 1)}`;
 }
 
 /**
@@ -101,20 +115,13 @@ async function screenshotBlob(canvas, { filename, type, quality, download }) {
  * @alias module:canvasScreenshot
  */
 function canvasScreenshot(canvas, options = {}) {
-  const date = new Date();
-
   const {
-    filename = `Screen Shot ${date.toISOString().slice(0, 10)} at ${date
-      .toTimeString()
-      .slice(0, 8)
-      .replace(/:/g, ".")}.png`,
-    type = getType(filename),
     quality = 1,
     useBlob,
     download = typeof document !== "undefined",
-  } = {
-    ...options,
-  };
+  } = options;
+  const type = options.type || getType(options.filename);
+  const filename = options.filename || getDefaultFilename(type);
 
   if (useBlob || !canvas.toDataURL) {
     return screenshotBlob(canvas, { filename, type, quality, download });
