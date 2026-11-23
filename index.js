@@ -25,7 +25,7 @@ function getDefaultFilename(type) {
   const date = new Date();
   const day = date.toISOString().slice(0, 10);
   const time = date.toTimeString().slice(0, 8).replaceAll(":", ".");
-  return `Screen Shot ${day} at ${time}.${type.slice(type.indexOf("/") + 1)}`;
+  return `Screenshot ${day} at ${time}.${type.slice(type.indexOf("/") + 1)}`;
 }
 
 /**
