@@ -47,6 +47,17 @@ button.addEventListener("click", () => {
 });
 ```
 
+Encode an `OffscreenCanvas` (always async). Browsers that can't encode WebP fall back to PNG:
+
+```js
+const offscreenCanvas = new OffscreenCanvas(256, 256);
+// ...draw
+const blob = await canvasScreenshot(offscreenCanvas, {
+  filename: "image.webp",
+  download: false,
+});
+```
+
 ## API
 
 <!-- api-start -->

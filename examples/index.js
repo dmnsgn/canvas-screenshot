@@ -73,6 +73,17 @@ button.addEventListener("click", async () => {
   });
   console.log(dataURLJpg, blobJpg);
 
+  const offscreenCanvas = new OffscreenCanvas(
+    context.canvas.width,
+    context.canvas.height,
+  );
+  offscreenCanvas.getContext("2d").drawImage(context.canvas, 0, 0);
+  const blobOffscreen = await canvasScreenshot(offscreenCanvas, {
+    filename: "test-offscreen.webp",
+    download: false,
+  });
+  console.log(blobOffscreen);
+
   // This is fine in Chromium
   // requestAnimationFrame(() => {
   //   canvasScreenshot(context.canvas, { filename: "test-filename" }),

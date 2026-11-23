@@ -30,17 +30,75 @@ function downloadURL(filename, url) {
 }
 
 /**
- * Take a screenshot.
- * Setting `options.useBlob` to `true` will consequently make the module async and return the latter.
- * @alias module:canvasScreenshot
- * @param {HTMLCanvasElement} canvas The canvas element
- * @param {import("./types.js").CanvasScreenshotOptions} [options={}]
- * @returns {string | Promise<Blob>} A `DOMString` or a `Promise` resolving with a `Blob`.
+ * Encode a canvas to a Blob.
  *
- * Type is inferred from the filename extension:
- * - png for `"image/png"` (default)
- * - jpg/jpeg for `"image/jpeg"`
- * - webp for `"image/webp"`
+ * @private
+ * @param {HTMLCanvasElement | OffscreenCanvas} canvas
+ * @param {string} type
+ * @param {number} quality
+ * @returns {Promise<Blob>}
+ */
+function toBlob(canvas, type, quality) {
+  if (canvas.convertToBlob) return canvas.convertToBlob({ type, quality });
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) =>
+        blob
+          ? resolve(blob)
+          : reject(
+              new Error("canvas-screenshot: canvas could not be encoded."),
+            ),
+      type,
+      quality,
+    );
+  });
+}
+
+/**
+ * Take a screenshot as a Blob
+ *
+ * @private
+ * @param {HTMLCanvasElement | OffscreenCanvas} canvas
+ * @param {object} options
+ * @param {string} options.filename
+ * @param {string} options.type
+ * @param {number} options.quality
+ * @param {boolean} options.download
+ * @returns {Promise<Blob>}
+ */
+async function screenshotBlob(canvas, { filename, type, quality, download }) {
+  const blob = await toBlob(canvas, type, quality);
+
+  if (download) {
+    const url = URL.createObjectURL(blob);
+    downloadURL(filename, url);
+
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 1);
+  }
+
+  return blob;
+}
+
+/**
+ * Take a screenshot. Setting `options.useBlob` to `true` will consequently make
+ * the module async and return the latter. An `OffscreenCanvas` has no data URL:
+ * it always returns a `Promise` resolving with a `Blob`.
+ *
+ * @param {HTMLCanvasElement | OffscreenCanvas} canvas The canvas element
+ * @param {import("./types.js").CanvasScreenshotOptions} [options={}]
+ * @returns {string | Promise<Blob>} A `DOMString` or a `Promise` resolving with
+ *   a `Blob`.
+ *
+ *   Type is inferred from the filename extension:
+ *
+ *   - "png" for `"image/png"` (default)
+ *   - "jpg/jpeg" for `"image/jpeg"`
+ *   - "webp for" `"image/webp"`
+ *
+ * @alias module:canvasScreenshot
  */
 function canvasScreenshot(canvas, options = {}) {
   const date = new Date();
@@ -58,25 +116,8 @@ function canvasScreenshot(canvas, options = {}) {
     ...options,
   };
 
-  if (useBlob) {
-    return new Promise((resolve) => {
-      canvas.toBlob(
-        (blob) => {
-          if (download) {
-            const url = URL.createObjectURL(blob);
-            downloadURL(filename, url);
-
-            setTimeout(() => {
-              URL.revokeObjectURL(url);
-            }, 1);
-          }
-
-          resolve(blob);
-        },
-        type,
-        quality,
-      );
-    });
+  if (useBlob || !canvas.toDataURL) {
+    return screenshotBlob(canvas, { filename, type, quality, download });
   }
 
   const dataURL = canvas.toDataURL(type, quality);
