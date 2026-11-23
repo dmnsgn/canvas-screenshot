@@ -1,24 +1,19 @@
-import { g as getDefaultExportFromCjs } from './_chunks/_commonjsHelpers-BFTU3MAI.js';
+var __commonJSMin = (cb, mod) => () => (mod || (cb((mod = { exports: {} }).exports, mod, mod.exports), cb = null), mod.exports);
 
-var fileExtension$1 = {exports: {}};
+/*! file-extension v4.0.5 | (c) silverwind | BSD license */
+var require_file_extension = /* @__PURE__ */ __commonJSMin(((exports, module) => {
+	(function(m) {
+		if (typeof exports === "object") module.exports = m();
+		else if (typeof define === "function" && define.amd) define([], m);
+		else this.fileExtension = m();
+	})(function() {
+		return function fileExtension(filename, opts) {
+			if (!opts) opts = {};
+			if (!filename) return "";
+			var ext = (/[^./\\]*$/.exec(filename) || [""])[0];
+			return opts.preserveCase ? ext : ext.toLowerCase();
+		};
+	});
+}));
 
-(function(module, exports) {
-    (function(m) {
-        {
-            module.exports = m();
-        }
-    })(function() {
-        return function fileExtension(filename, opts) {
-            if (!opts) opts = {};
-            if (!filename) return "";
-            var ext = (/[^./\\]*$/.exec(filename) || [
-                ""
-            ])[0];
-            return opts.preserveCase ? ext : ext.toLowerCase();
-        };
-    });
-})(fileExtension$1);
-var fileExtensionExports = fileExtension$1.exports;
-var fileExtension = /*@__PURE__*/ getDefaultExportFromCjs(fileExtensionExports);
-
-export { fileExtension as default };
+export default require_file_extension();
